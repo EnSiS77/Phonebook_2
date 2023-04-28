@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Phonebook;
 
 use App\Http\Controllers\Controller;
+use App\Models\Phonebook;
 use Illuminate\Http\Request;
 
 class ContactsController extends Controller
@@ -12,7 +13,9 @@ class ContactsController extends Controller
      */
     public function index()
     {
-        //
+        $item = Phonebook::all();
+
+        return view('book.admin.contacts.index', compact('item'));
     }
 
     /**

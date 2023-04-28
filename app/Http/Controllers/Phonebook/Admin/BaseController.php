@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\Phonebook\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Phonebook\BaseController as GuestBaseController;
 
-class BaseController extends Controller
+
+abstract class BaseController extends GuestBaseController
 {
-    //
+    public function __construct()
+    {
+        
+    }
 }
+
