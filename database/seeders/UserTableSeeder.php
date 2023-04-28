@@ -21,7 +21,7 @@ class UserTableSeeder extends Seeder
             'password'      =>  bcrypt(Str::random(16)),
         ],
         [
-            'name'          => 'Автор',
+            'name'          => 'Adam',
             'email'         => 'authorl@g.g',
             'password'      =>  bcrypt('123123'),
         ]
