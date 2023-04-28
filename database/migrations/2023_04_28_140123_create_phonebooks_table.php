@@ -20,14 +20,13 @@ return new class extends Migration
             $table->string('email');
             $table->string('phone');
 
-            $table->boolean('is_published')->default(false);
             $table->timestamp('published_at')->nullable();
 
             $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
-            $table->index('is_published');
+            
         });
     }
 

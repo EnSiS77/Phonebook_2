@@ -26,7 +26,6 @@ class PhonebookFactory extends Factory
             'name'          => $this->faker->name(),
             'email'         => $this->faker->email(),
             'phone'         => $this->faker->e164PhoneNumber,
-            'is_published'  => $isPublished,
             'published_at'  => $isPublished ? $this->faker->dateTimeBetween('-2 months', '-1 days') : null,
             'created_at'    => $createdAt,
             'updated_at'    => $createdAt,
