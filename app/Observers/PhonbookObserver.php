@@ -2,37 +2,49 @@
 
 namespace App\Observers;
 
-use App\Models\Models\Phonebook;
+use App\Models\Phonebook;
 
 class PhonbookObserver
 {
     /**
-     * Handle the Phonebook "created" event.
+     * Обработка Перед созданием записи
+     *
+     *@param Phonebook $phonebook
      */
-    public function created(Phonebook $phonebook): void
-    {
-        //
+    
+    public function creating(Phonebook $phonebook): void
+    {   
+        $this->setUser($phonebook);
     }
 
     /**
-     * Handle the Phonebook "updated" event.
+     * 
+     *@param Phonebook $phonebook
      */
-    public function updated(Phonebook $phonebook): void
+     
+    
+    protected function setUser(Phonebook $phonebook)
     {
-        //
+        $phonebook->user_id = auth()->id ?? Phonebook::UNKNOWN_USER;
     }
 
+
     /**
-     * Handle the Phonebook "deleted" event.
+     * 
+     *Handle the Phonebook "deleted" event.
      */
+    
     public function deleted(Phonebook $phonebook): void
     {
         //
     }
 
     /**
+     * 
      * Handle the Phonebook "restored" event.
      */
+      
+     
     public function restored(Phonebook $phonebook): void
     {
         //
