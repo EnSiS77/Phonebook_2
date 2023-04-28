@@ -2,14 +2,19 @@
 
 namespace App\Http\Controllers\Phonebook\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\PhonebookCreateRequest;
 use App\Http\Requests\PhonebookUpdateRequest;
 use App\Models\Phonebook;
 use App\Repositories\PhonebookRepository;
 
 
-class ContactsController extends Controller
+/**
+ * Управление контактами
+ * 
+ * @package App\Http\Controllers\Blog\Admin
+ */
+
+class ContactsController extends BaseController
 {
 
     /**
@@ -17,12 +22,17 @@ class ContactsController extends Controller
      */
     private $phonebookRepository;
 
+
+    /**
+     * ContactsController constructor
+     */
     public function __construct()
     {
         parent::__construct();
-        
+
         $this->phonebookRepository = app(PhonebookRepository::class);
     }
+
     
     /**
      * Display a listing of the resource.

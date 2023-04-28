@@ -15,7 +15,7 @@ class ContactsController extends Controller
     {
         $item = Phonebook::all();
 
-        return view('book.admin.contacts.index', compact('item'));
+        return view('book.contacts.index', compact('item'));
     }
 
     /**
