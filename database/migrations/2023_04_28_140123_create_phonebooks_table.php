@@ -12,8 +12,22 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('phonebooks', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+
+            $table->bigInteger('user_id')->unsigned();
+
+            $table->string('name')->unique();
+            $table->string('email');
+            $table->string('phone');
+
+            $table->boolean('is_published')->default(false);
+            $table->timestamp('published_at')->nullable();
+
+            $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->index('is_published');
         });
     }
 
