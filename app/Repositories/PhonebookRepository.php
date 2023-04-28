@@ -28,7 +28,6 @@ class PhonebookRepository extends CoreRepository
             'name',
             'email',
             'phone',
-            'is_published',
             'published_at',
             'user_id',
 

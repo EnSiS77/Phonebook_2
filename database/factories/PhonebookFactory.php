@@ -17,7 +17,6 @@ class PhonebookFactory extends Factory
      */
     public function definition(): array
     {
-        $isPublished = rand(1, 5) >1;
 
         $createdAt = $this->faker->dateTimeBetween('-3 months', '-2 days');
 
@@ -26,7 +25,7 @@ class PhonebookFactory extends Factory
             'name'          => $this->faker->name(),
             'email'         => $this->faker->email(),
             'phone'         => $this->faker->e164PhoneNumber,
-            'published_at'  => $isPublished ? $this->faker->dateTimeBetween('-2 months', '-1 days') : null,
+            'published_at'  => $this->faker->dateTimeBetween('-2 months', '-1 days'),
             'created_at'    => $createdAt,
             'updated_at'    => $createdAt,
         ];
