@@ -124,7 +124,7 @@ class ContactsController extends BaseController
     public function destroy($id)
     {
         //Софт-удаление, в бд остается.
-        $result = Phonebook::destroy($id);
+        // $result = Phonebook::destroy($id);
 
         //Полное удаление с бд
         $result = Phonebook::find($id)->forceDelete();

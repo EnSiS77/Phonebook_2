@@ -30,9 +30,7 @@ $groupData = [
 ];
 
 Route::group($groupData, function() {
-    $methods = ['index', 'edit', 'update', 'create', 'store',];
     Route::resource('contacts', ContactsController::class)
-        ->only($methods)
         ->except(['show'])
         ->names('book.admin.contacts');
 });
