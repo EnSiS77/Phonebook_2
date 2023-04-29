@@ -6,6 +6,8 @@ use App\Http\Requests\PhonebookCreateRequest;
 use App\Http\Requests\PhonebookUpdateRequest;
 use App\Models\Phonebook;
 use App\Repositories\PhonebookRepository;
+// use GuzzleHttp\Psr7\Request;
+use Illuminate\Http\Request;
 
 
 /**
@@ -137,4 +139,18 @@ class ContactsController extends BaseController
             return back()->withErrors(['msg' => 'Ошибка удаления']);
         }
     }
+
+    /**
+     * Выборочное удаление, удаляет и с базы
+     */
+    
+    public function deleteAll(Request $request)
+    {
+        $ids = $request->ids;
+        Phonebook::whereIn('id', $ids)->delete();  
+        
+    
+        return response()->json(["success" => "Контакты были удалены!"]);
+    }
+    
 }

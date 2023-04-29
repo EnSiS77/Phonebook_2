@@ -33,7 +33,11 @@ Route::group($groupData, function() {
     Route::resource('contacts', ContactsController::class)
         ->except(['show'])
         ->names('book.admin.contacts');
+
+    Route::delete('book/admin/contacts/destroy',  [ContactsController::class, 'deleteAll'])->name('contacts.delete');
 });
+
+
 
 //Роуты к авторизации
 Auth::routes();

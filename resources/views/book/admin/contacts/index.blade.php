@@ -9,13 +9,16 @@
                 @include('book.admin.contacts.includes.result_messages')
 
                 <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-                    <a class="btn btn-primary" href="{{ route('book.admin.contacts.create') }}" >Написать</a>
+                    <a class="btn btn-primary" href="{{ route('book.admin.contacts.create') }}" >Создать новый контакт</a>
+                    <a href="" class="btn btn-danger" id="deleteAllSelectedRecord">Удалить все выбранные</a>
                 </nav>
+
                 <div class="card">
                     <div class="card-body">
                         <table class="table table-hover">
                             <thead>
                                 <tr>
+                                    <th><input type="checkbox" value="" id="select_all_ids"></th>
                                     <th>#</th>
                                     <th>Автор</th>
                                     <th>Ф.И.О.</th>
@@ -29,7 +32,8 @@
                                     @php
                                         /** @var \App\Model\Phonebook $contacts */
                                     @endphp
-                                    <tr>
+                                    <tr id="contacts_ids{{ $contacts->id }}">
+                                        <td><input type="checkbox" name="ids" class="checkbox_ids" value="{{ $contacts->id }}"></td>
                                         <td>{{ $contacts->id  }}</td>
                                         <td>{{ $contacts->user->name  }}</td>
                                         <td>
@@ -60,5 +64,39 @@
                 </div>
             </div>
         @endif
-    </div>    
-@endsection
+    </div> 
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity=""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js"></script>
+    
+    <script>
+        $(function(){
+            $("#select_all_ids").click(function(){
+                $('.checkbox_ids').prop('checked',$(this).prop('checked'));
+            });
+    
+            $('#deleteAllSelectedRecord').click(function(e){
+                e.preventDefault();
+                var all_ids = [];
+                $('input:checkbox[name=ids]:checked').each(function(){
+                    all_ids.push($(this).val());
+                });
+    
+                $.ajax({
+                    url: "{{ route('contacts.delete') }}",
+                    type: "DELETE",
+                    data: {
+                        ids: all_ids,
+                        _token:'{{ csrf_token() }}'
+                    },
+                    success: function(response){
+                        $.each(all_ids, function(key, val){
+                            $('#contacts_ids'+val).remove();
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+    
+    
