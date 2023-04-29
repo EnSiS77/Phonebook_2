@@ -30,7 +30,7 @@ class PhonebookCreateRequest extends FormRequest
         return [
             'name'         => 'required|min:3|max:100',
             'email'        => 'required|email',
-            'phone'        => 'required|regex:/^[0-9]{6,30}$/',
+            'phone'        => 'required|regex:/^\+?[0-9]{6,30}$/',
         ];
     }
 }

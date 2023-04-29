@@ -21,5 +21,8 @@ class Phonebook extends Model
      {
         //Контакты принадлежат пользователю
         return $this->belongsTo(User::class);
-     }
+        
+      }
+      
+      protected $fillable = ['name', 'email', 'phone', ];
 }

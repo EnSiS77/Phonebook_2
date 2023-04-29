@@ -30,11 +30,20 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
+                        
+                    </ul>
 
+                    <!-- По середке -->
+                    <ul class="navbar-nav text-align-center">
+                        <a class="navbar-brand ml-10" href="{{ url('/book/contacts') }}">
+                            Телефонная книжка
+                        </a>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
+
+                        
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))

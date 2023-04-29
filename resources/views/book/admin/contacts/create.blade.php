@@ -14,7 +14,7 @@
 
             @if ($item->exists)
                 <form method="POST" action="{{ route('book.admin.contacts.update', $item->id) }}">
-                    @method('PATCH')
+                    {{-- @method('PATCH') --}}
                 @else
                     <form method="POST" action="{{ route('book.admin.contacts.store') }}">
             @endif
