@@ -53,7 +53,7 @@ class ContactsController extends BaseController
         $item = new Phonebook();
         
         return view(
-            'book.admin.contacts.edit', compact('item')
+            'book.admin.contacts.create', compact('item')
         );
     }
 
@@ -64,9 +64,10 @@ class ContactsController extends BaseController
     {
         $data = $request->input();
         $item = (new Phonebook())->create($data);
+        
 
         if($item) {
-            return redirect()->route('book.admin.contacts.edit', [$item->id])
+            return redirect()->route('book.admin.contacts.create', [$item->id])
                         ->with(['success' => 'Успешно сохранено']);
         } else {
             return back()->withErrors(['msg' => 'Ошибка сохранения'])

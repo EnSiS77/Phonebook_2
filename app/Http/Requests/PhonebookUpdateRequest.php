@@ -29,7 +29,7 @@ class PhonebookUpdateRequest extends FormRequest
         return [
             'name'         => 'required|min:3|max:100',
             'email'        => 'required|email',
-            'phone'        => 'required|numeric|digits:10',
+            'phone'        => 'required|regex:/^[0-9]{6,30}$/',
         ];
     }
 }
