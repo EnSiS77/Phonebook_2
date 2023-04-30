@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Phonebook\Admin\ContactsController;
-use App\Http\Controllers\SearchController;
+use App\Http\Controllers\Search\SearchController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -36,10 +36,11 @@ Route::group($groupData, function() {
         ->names('book.admin.contacts');
 
     Route::delete('book/admin/contacts/destroy',  [ContactsController::class, 'deleteAll'])->name('contacts.delete');
+
 });
 
-//Роуты к поиску
-// Route::get("search", [SearchController::class], 'search');
+// Роуты к поиску
+Route::get('/book/search/search', [ContactsController::class, 'search'])->name('web.search');
 
 
 //Роуты к авторизации

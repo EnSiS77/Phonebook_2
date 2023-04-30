@@ -18,6 +18,8 @@ class ContactsController extends Controller
         return view('book.contacts.index', compact('item'));
     }
 
+
+
     /**
      * Show the form for creating a new resource.
      */

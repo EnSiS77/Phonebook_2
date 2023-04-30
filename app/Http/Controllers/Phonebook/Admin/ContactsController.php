@@ -165,4 +165,24 @@ class ContactsController extends BaseController
 
         return response()->json(["success" => "Контакты были удалены!"]);
     }
+
+    /**
+     * Посиковой контроллер
+     */
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $contacts = Phonebook::query()
+            ->where('id', 'LIKE', "%{$query}%")
+            ->orWhere('user_id', 'LIKE', "%{$query}%")
+            ->orWhere('name', 'LIKE', "%{$query}%")
+            ->orWhere('email', 'LIKE', "%{$query}%")
+            ->orWhere('phone', 'LIKE', "%{$query}%")
+            ->orderBy('id')
+            ->paginate(10);
+    
+        return view('book.search.search', compact('contacts'));
+    }
+    
+
 }

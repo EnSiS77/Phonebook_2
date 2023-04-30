@@ -7,26 +7,7 @@
 
                 @include('book.admin.contacts.includes.result_messages')
 
-                <form action="" method="GET">
-                    <input type="text" name="search" required />
-                    <button type="submit">Search</button>
-                </form>
 
-                @if ($contacts->isNotEmpty())
-                    @foreach ($contacts as $contact)
-                        <div class="post-list">
-                            <p>{{ $contact->id }}</p>
-                            <p>{{ $contact->name }}</p>
-                            <p>{{ $contact->email }}</p>
-                            <p>{{ $contact->phone }}</p>
-                            
-                        </div>
-                    @endforeach
-                @else
-                    <div>
-                        <h2>Контакт не найден</h2>
-                    </div>
-                @endif
 
                 <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
                     <a class="btn btn-primary" href="{{ route('book.admin.contacts.create') }}">Создать новый контакт</a>
