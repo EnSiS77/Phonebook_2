@@ -41,7 +41,7 @@
                         @endforeach
                     @else
                         <tr>
-                            <td colspan="6">Контактов по таким данным не найдено :(</td>
+                            <td colspan="6" class="align text-center"><h1>Контактов по таким данным не найдено :(</h1></td>
                         </tr>
                     @endif
                 </tbody>
