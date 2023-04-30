@@ -3,7 +3,7 @@
 @section('content')
 
     <head>
-        <link rel="stylesheet" href="Https://cdnjs.cloudflare.com/ajax/libs/bpptstrap/5.2.3/css/bootstrap.min.css">
+        <link rel="stylesheet" href="Https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css">
         <script src="Https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
     </head>
@@ -45,11 +45,11 @@
                     <th>Действие</th>
                 </tr>
                 <tr>
-                    <td><input type="text" name="inputs[0]['name']" placeholder="Введите Ф.И.О." class="form-control">
+                    <td><input type="text" name="inputs[0][name]" placeholder="Введите Ф.И.О." class="form-control">
                     </td>
-                    <td><input type="email" name="inputs[0]['email']" placeholder="Введите email" class="form-control">
+                    <td><input type="email" name="inputs[0][email]" placeholder="Введите email" class="form-control">
                     </td>
-                    <td><input type="tel" name="inputs[0]['phone']" placeholder="Введите номер телефона"
+                    <td><input type="tel" name="inputs[0][phone]" placeholder="Введите номер телефона"
                             class="form-control"></td>
                     <td><button type="button" name="add" id="add" class="btn btn-success">Добавить
                             поле</button></td>
@@ -80,7 +80,7 @@
                     </td>
                     
                     <td>
-                        <input type="number" name="inputs[` + i + `][phone]" placeholder="Введите номер телефона" class="form-control" />
+                        <input type="tel" name="inputs[` + i + `][phone]" placeholder="Введите номер телефона" class="form-control" />
                     </td>
 
                     <td>

@@ -35,7 +35,7 @@ class ContactsController extends BaseController
         $this->phonebookRepository = app(PhonebookRepository::class);
     }
 
-    
+
     /**
      * Display a listing of the resource.
      */
@@ -51,9 +51,10 @@ class ContactsController extends BaseController
     public function create()
     {
         $item = new Phonebook();
-        
+
         return view(
-            'book.admin.contacts.create', compact('item')
+            'book.admin.contacts.create',
+            compact('item')
         );
     }
 
@@ -62,18 +63,29 @@ class ContactsController extends BaseController
      */
     public function store(PhonebookCreateRequest $request)
     {
-        $data = $request->input();
-        $item = (new Phonebook())->create($data);
-        
+        $successMsg = 'Успешно сохранено';
+        $errorMsg = 'Ошибка сохранения';
 
-        if($item) {
-            return redirect()->route('book.admin.contacts.create', [$item->id])
-                        ->with(['success' => 'Успешно сохранено']);
-        } else {
-            return back()->withErrors(['msg' => 'Ошибка сохранения'])
-                        ->withInput();
+        foreach ($request->inputs as $key => $value) {
+            try {
+                Phonebook::create($value);
+                $successMsg .= ' для контакта ' . $value['name'];
+            } catch (\Illuminate\Database\QueryException $e) {
+                $errorCode = $e->errorInfo[1];
+                if ($errorCode == 1062) {
+                    $errorMsg .= ' для контакта ' . $value['name'] . ': дубликат';
+                } else {
+                    $errorMsg .= ' для контакта ' . $value['name'] . ': неизвестная ошибка';
+                }
+            }
         }
+
+        return redirect()->route('book.admin.contacts.create')
+            ->with('success', $successMsg)
+            ->withErrors(['msg' => $errorMsg]);
     }
+
+
 
     /**
      * Show the form for editing the specified resource.
@@ -100,7 +112,7 @@ class ContactsController extends BaseController
     {
         $item = $this->phonebookRepository->getEdit($id);
 
-        if(empty($item)) {
+        if (empty($item)) {
             return back()
                 ->withErrors(['msg' => "Запись id=[{$id}] не найдена"])
                 ->withInput();
@@ -110,7 +122,7 @@ class ContactsController extends BaseController
 
         $result = $item->update($data);
 
-        if($result) {
+        if ($result) {
             return redirect()
                 ->route('book.admin.contacts.edit', $item->id)
                 ->with(['success' => 'Успешно обновлено']);
@@ -132,7 +144,7 @@ class ContactsController extends BaseController
         //Полное удаление с бд
         $result = Phonebook::find($id)->forceDelete();
 
-        if($result) {
+        if ($result) {
             return redirect()
                 ->route('book.admin.contacts.index')
                 ->with(['success' => "Запись id=[{$id}] удалена"]);
@@ -144,14 +156,13 @@ class ContactsController extends BaseController
     /**
      * Выборочное удаление, удаляет и с базы
      */
-    
+
     public function deleteAll(Request $request)
     {
         $ids = $request->ids;
-        Phonebook::whereIn('id', $ids)->delete();  
-        
-    
+        Phonebook::whereIn('id', $ids)->delete();
+
+
         return response()->json(["success" => "Контакты были удалены!"]);
     }
-    
 }

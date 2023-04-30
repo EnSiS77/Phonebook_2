@@ -25,12 +25,13 @@ class PhonebookCreateRequest extends FormRequest
      */
      
     
-    public function rules(): array
-    {
-        return [
-            'name'         => 'required|min:3|max:100',
-            'email'        => 'required|email',
-            'phone'        => 'required|regex:/^\+?[0-9]{6,30}$/',
-        ];
-    }
+     public function rules(): array
+     {
+         return [
+             'inputs.*.name' => 'required|min:3|max:100',
+             'inputs.*.email' => 'required|email',
+             'inputs.*.phone' => 'required|regex:/^\+?[0-9]{6,30}$/',
+         ];
+     }
+     
 }
