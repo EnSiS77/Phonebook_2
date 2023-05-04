@@ -8,6 +8,7 @@ use App\Models\Phonebook;
 use App\Repositories\PhonebookRepository;
 // use GuzzleHttp\Psr7\Request;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 
 
 /**
@@ -180,9 +181,7 @@ class ContactsController extends BaseController
             ->orWhere('phone', 'LIKE', "%{$query}%")
             ->orderBy('id')
             ->paginate(10);
-    
+
         return view('book.search.search', compact('contacts'));
     }
-    
-
 }

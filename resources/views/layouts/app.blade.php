@@ -38,6 +38,10 @@
                         <a class="navbar-brand ml-10" href="{{ url('/book/contacts') }}">
                             Телефонная книжка
                         </a>
+                        
+                        <a class="navbar-brand ml-10" href="{{ url('book/search/search') }}">
+                            Поиск
+                        </a>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

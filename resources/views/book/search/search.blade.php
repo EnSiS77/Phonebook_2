@@ -3,7 +3,7 @@
 @section('content')
 
 
-<div class="container">
+<div class="container mb-3">
     <div class="row">
         <form class="mb-3" method="get" action="{{ route('web.search') }}">
             @csrf
@@ -48,6 +48,24 @@
             </table>
         @endisset
     </div>
+    @if ($contacts->count() > 0)
+        @foreach ($contacts as $contact)
+            <!-- выводим контакты -->
+        @endforeach
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        {{ $contacts->links() }}
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    @else
+        <!-- выводим сообщение о том, что контактов не найдено -->
+    @endif
 </div>
+
 
 @endsection
